@@ -1,13 +1,46 @@
-resource "random_integer" "example" {
-  count = module.this.enabled ? 1 : 0
 
-  min = 1
-  max = 50000
-  keepers = {
-    example = var.example
+locals {
+  enabled            = module.this.enabled
+  cluster_name       = var.eks_cluster_id
+  controller_id      = var.ocean_controller_id == null ? local.cluster_name : var.ocean_controller_id
+  subnet_ids         = var.subnet_ids
+  security_group_ids = var.security_group_ids
+
+  default_tags = {
+    Name : "${local.cluster_name}-ocean-cluster-node"
+    "kubernetes.io/cluster/${local.cluster_name}" : "owned"
   }
 }
 
-locals {
-  example = format("%v %v", var.example, join("", random_integer.example[*].result))
+resource "spotinst_ocean_aws" "this" {
+  count      = local.enabled ? 1 : 0
+  depends_on = [var.module_depends_on]
+
+  name                        = local.cluster_name
+  controller_id               = local.controller_id
+  region                      = var.region
+  max_size                    = var.max_size
+  min_size                    = var.min_size
+  desired_capacity            = var.desired_capacity
+  subnet_ids                  = local.subnet_ids
+  image_id                    = local.ami_id
+  root_volume_size            = var.disk_size
+  security_groups             = local.security_group_ids
+  key_name                    = var.ec2_ssh_key
+  iam_instance_profile        = join("", aws_iam_instance_profile.worker.*.name)
+  associate_public_ip_address = var.associate_public_ip_address
+  user_data                   = local.userdata
+
+  dynamic "tags" {
+    for_each = merge(local.default_tags, module.this.tags)
+    content {
+      key   = tags.key
+      value = tags.value
+    }
+  }
+
+  autoscaler {
+    autoscale_is_enabled     = true
+    autoscale_is_auto_config = true
+  }
 }
