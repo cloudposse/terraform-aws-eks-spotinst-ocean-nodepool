@@ -27,7 +27,7 @@ resource "spotinst_ocean_aws" "this" {
   root_volume_size            = var.disk_size
   security_groups             = local.security_group_ids
   key_name                    = var.ec2_ssh_key
-  iam_instance_profile        = join("", aws_iam_instance_profile.worker.*.name)
+  iam_instance_profile        = var.instance_profile == null ? join("", aws_iam_instance_profile.worker.*.name) : var.instance_profile
   associate_public_ip_address = var.associate_public_ip_address
   user_data                   = local.userdata
 

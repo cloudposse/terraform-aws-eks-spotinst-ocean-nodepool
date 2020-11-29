@@ -1,27 +1,4 @@
-//variable "spotinst_token" {
-//  type        = string
-//  description = "Spot Personal Access token"
-//}
-//
-//variable "spotinst_account" {
-//  type        = string
-//  description = "Spot account ID"
-//}
-//
 
-//variable "spotinst_external_id_ssm_key" {
-//  type        = string
-//  description = "SSM key for Spot AWS integration External ID"
-//  default = "/spotinst/external_id"
-//}
-//
-//variable "spotinst_aws_account_id" {
-//  type        = string
-//  description = "Spotinst AWS account ID for assuming role in your account"
-//  default = "922761411349"
-//}
-//
-//
 variable "region" {
   type        = string
   description = "AWS Region"
@@ -34,7 +11,13 @@ variable "eks_cluster_id" {
 
 variable "ocean_controller_id" {
   type        = string
-  description = "Ocean Cluster identifier. If unset, will use EKS cluster identifier"
+  description = "Ocean Cluster identifier, used by cluster controller to target this cluster. If unset, will use EKS cluster identifier"
+  default     = null
+}
+
+variable "instance_profile" {
+  type        = string
+  description = "The AWS Instance Profile to use for Spotinst Worker instances. If not set, one will be created."
   default     = null
 }
 
