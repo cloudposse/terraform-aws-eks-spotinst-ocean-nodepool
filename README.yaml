@@ -5,7 +5,7 @@
 #
 
 # Name of this project
-name: terraform-example-module
+name: terraform-aws-eks-spotinst-ocean-nodepool
 
 # Logo for this project
 #logo: docs/logo.png
@@ -20,13 +20,13 @@ copyrights:
     year: "2020"
 
 # Canonical GitHub repo
-github_repo: cloudposse/terraform-example-module
+github_repo: cloudposse/terraform-aws-eks-spotinst-ocean-nodepool
 
 # Badges to display
 badges:
   - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse/terraform-example-module.svg"
-    url: "https://github.com/cloudposse/terraform-example-module/releases/latest"
+    image: "https://img.shields.io/github/release/cloudposse/terraform-aws-eks-spotinst-ocean-nodepool.svg"
+    url: "https://github.com/cloudposse/terraform-aws-eks-spotinst-ocean-nodepool/releases/latest"
   - name: "Slack Community"
     image: "https://slack.cloudposse.com/badge.svg"
     url: "https://slack.cloudposse.com"
@@ -36,6 +36,12 @@ badges:
 
 # List any related terraform modules that this module may be used with or that this module depends on.
 related:
+  - name: "terraform-aws-eks-cluster"
+    description: "Terraform module to provision an EKS cluster on AWS"
+    url: "https://github.com/cloudposse/terraform-aws-eks-cluster"
+  - name: "terraform-aws-eks-workers"
+    description: "Terraform module to provision an AWS AutoScaling Group, IAM Role, and Security Group for EKS Workers"
+    url: "https://github.com/cloudposse/terraform-aws-eks-workers"
   - name: "terraform-null-label"
     description: "Terraform module designed to generate consistent names and tags for resources. Use terraform-null-label to implement a strict naming convention."
     url: "https://github.com/cloudposse/terraform-null-label"
@@ -48,17 +54,14 @@ references:
   - name: "Terraform Module Requirements"
     description: "HashiCorp's guidance on all the requirements for publishing a module. Meeting the requirements for publishing a module is extremely easy."
     url: "https://www.terraform.io/docs/registry/modules/publish.html#requirements"
-  - name: "Terraform `random_integer` Resource"
-    description: "The resource random_integer generates random values from a given range, described by the min and max attributes of a given resource."
-    url: "https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/integer"
   - name: "Terraform Version Pinning"
     description: "The required_version setting can be used to constrain which versions of the Terraform CLI can be used with your configuration"
     url: "https://www.terraform.io/docs/configuration/terraform.html#specifying-a-required-terraform-version"
 
 # Short description of this project
 description: |-
-  This is `terraform-example-module` project provides all the scaffolding for a typical well-built Cloud Posse module. It's a template repository you can
-  use when creating new repositories.
+  This `terraform-aws-eks-spotinst-ocean-nodepool` module provides the scaffolding for provisioning a [Spotinst](https://spot.io/)
+  [Ocean](https://spot.io/products/ocean/) connected to an AWS EKS cluster.
 
 # Introduction to the project
 #introduction: |-
@@ -69,16 +72,31 @@ usage: |-
   Here's how to invoke this example module in your projects
 
   ```hcl
-  module "example" {
-    source = "https://github.com/cloudposse/terraform-example-module.git?ref=master"
-    example = "Hello world!"
+  module "spotinst_oceans" {
+    source = "git::https://github.com/cloudposse/terraform-aws-eks-spotinst-ocean-nodepool.git?ref=master"
+
+    disk_size           = var.disk_size
+    instance_types      = var.instance_types
+    instance_profile    = var.instance_profile_name
+    kubernetes_version = var.kubernetes_version
+    min_size           = var.min_group_size == null ? local.so_def.min_group_size : var.min_group_size
+    max_size           = var.max_group_size == null ? local.so_def.max_group_size : var.max_group_size
+    desired_capacity    = var.desired_group_size == null ? local.so_def.desired_group_size : var.desired_group_size
+
+    eks_cluster_id      = module.eks_cluster.eks_cluster_id
+    ocean_controller_id = module.eks_cluster.eks_cluster_id
+    region              = var.region
+    subnet_ids          = module.vpc.private_subnet_ids
+    security_group_ids  = [module.eks_cluster.eks_cluster_managed_security_group_id]
+
+    context = module.this.context
   }
   ```
 
 # Example usage
-examples: |-
-  Here is an example of using this module:
-  - [`examples/complete`](https://github.com/cloudposse/terraform-example-module/) - complete example of using this module
+#examples: |-
+#  Here is an example of using this module:
+#  - [`examples/complete`](https://github.com/cloudposse/terraform-aws-eks-spotinst-ocean-nodepool/) - complete example of using this module
 
 # How to get started quickly
 #quickstart: |-

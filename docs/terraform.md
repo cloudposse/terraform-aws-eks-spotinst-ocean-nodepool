@@ -39,6 +39,7 @@
 | environment | Environment, e.g. 'uw2', 'us-west-2', OR 'prod', 'staging', 'dev', 'UAT' | `string` | `null` | no |
 | existing\_workers\_role\_policy\_arns | List of existing policy ARNs that will be attached to the workers default role on creation | `list(string)` | `[]` | no |
 | id\_length\_limit | Limit `id` to this many characters.<br>Set to `0` for unlimited length.<br>Set to `null` for default, which is `0`.<br>Does not affect `id_full`. | `number` | `null` | no |
+| instance\_profile | The AWS Instance Profile to use for Spotinst Worker instances. If not set, one will be created. | `string` | `null` | no |
 | instance\_types | List of instance type to use for this node group. Defaults to null, which allows all instance types. | `list(string)` | `null` | no |
 | kubelet\_additional\_options | Additional flags to pass to kubelet.<br>DO NOT include `--node-labels` or `--node-taints`,<br>use `kubernetes_labels` and `kubernetes_taints` to specify those." | `string` | `""` | no |
 | kubernetes\_labels | Key-value mapping of Kubernetes labels. Only labels that are applied with the EKS API are managed by this argument.<br>Other Kubernetes labels applied to the EKS Node Group will not be managed. | `map(string)` | `{}` | no |
@@ -50,7 +51,7 @@
 | module\_depends\_on | Can be any value desired. Module will wait for this value to be computed before creating node group. | `any` | `null` | no |
 | name | Solution name, e.g. 'app' or 'jenkins' | `string` | `null` | no |
 | namespace | Namespace, which could be your organization name or abbreviation, e.g. 'eg' or 'cp' | `string` | `null` | no |
-| ocean\_controller\_id | Ocean Cluster identifier. If unset, will use EKS cluster identifier | `string` | `null` | no |
+| ocean\_controller\_id | Ocean Cluster identifier, used by cluster controller to target this cluster. If unset, will use EKS cluster identifier | `string` | `null` | no |
 | regex\_replace\_chars | Regex to replace chars with empty string in `namespace`, `environment`, `stage` and `name`.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | region | AWS Region | `string` | n/a | yes |
 | security\_group\_ids | List of security groups that will be attached to the autoscaling group | `list(string)` | n/a | yes |
@@ -64,6 +65,6 @@
 | Name | Description |
 |------|-------------|
 | ocean\_controller\_id | The ID of the Ocean controller |
-| worker\_arn | The ARN of the role for worker instances |
+| worker\_role\_arn | The ARN of the role for worker instances, if created by this module (`var.instance_profile == null`) |
 
 <!-- markdownlint-restore -->
