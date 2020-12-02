@@ -1,14 +1,9 @@
-output "id" {
-  description = "ID of the created example"
-  value       = module.this.enabled ? module.this.id : null
+output "ocean_controller_id" {
+  description = "The ID of the Ocean controller"
+  value       = local.controller_id
 }
 
-output "example" {
-  description = "Example output"
-  value       = module.this.enabled ? local.example : null
-}
-
-output "random" {
-  description = "Stable random number for this example"
-  value       = module.this.enabled ? join("", random_integer.example[*].result) : null
+output "worker_role_arn" {
+  description = "The ARN of the role for worker instances, if created by this module (`var.instance_profile == null`)"
+  value       = local.enabled && var.instance_profile == null ? join("", aws_iam_role.worker.*.arn) : null
 }
