@@ -71,7 +71,7 @@ We literally have [*hundreds of terraform modules*][terraform_modules] that are 
 Instead pin to the release tag (e.g. `?ref=tags/x.y.z`) of one of our [latest releases](https://github.com/cloudposse/terraform-aws-eks-spotinst-ocean-nodepool/releases).
 
 
-Here's how to invoke this example module in your projects
+Here's how to invoke this module in your projects
 
 ```hcl
 module "spotinst_oceans" {
@@ -97,6 +97,11 @@ module "spotinst_oceans" {
 
 
 
+
+## Examples
+
+Here is an example of using this module:
+- [`examples/complete`](examples/complete/) - complete example of using this module
 
 
 

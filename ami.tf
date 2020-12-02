@@ -4,9 +4,9 @@ locals {
 
   // "amazon-eks-gpu-node-",
   arch_label_map = {
-    "AL2_x86_64" : "",
-    "AL2_x86_64_GPU" : "-gpu",
-    "AL2_ARM_64" : "-arm64",
+    "AL2_x86_64"     = "",
+    "AL2_x86_64_GPU" = "-gpu",
+    "AL2_ARM_64"     = "-arm64",
   }
 
   // Kubernetes version priority (first one to be set wins)
