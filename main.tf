@@ -43,4 +43,8 @@ resource "spotinst_ocean_aws" "this" {
     autoscale_is_enabled     = true
     autoscale_is_auto_config = true
   }
+
+  lifecycle {
+    ignore_changes = [desired_capacity]
+  }
 }
