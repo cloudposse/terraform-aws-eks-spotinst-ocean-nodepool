@@ -25,7 +25,7 @@ module "worker_label" {
   source  = "cloudposse/label/null"
   version = "0.22.0"
 
-  enabled = local.instance_profile_enabled
+  enabled    = local.instance_profile_enabled
   attributes = ["worker"]
 
   context = module.this.context
