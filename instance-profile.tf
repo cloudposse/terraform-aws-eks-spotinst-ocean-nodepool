@@ -22,9 +22,10 @@ data "aws_iam_policy_document" "assume_role" {
 }
 
 module "worker_label" {
-  source  = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.21.0"
-  enabled = local.instance_profile_enabled
+  source  = "cloudposse/label/null"
+  version = "0.22.0"
 
+  enabled    = local.instance_profile_enabled
   attributes = ["worker"]
 
   context = module.this.context

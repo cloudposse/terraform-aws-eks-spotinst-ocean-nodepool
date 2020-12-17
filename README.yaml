@@ -73,7 +73,9 @@ usage: |-
 
   ```hcl
   module "spotinst_oceans" {
-    source = "git::https://github.com/cloudposse/terraform-aws-eks-spotinst-ocean-nodepool.git?ref=master"
+    source = "cloudposse/eks-spotinst-ocean-nodepool/aws"
+    # Cloud Posse recommends pinning every module to a specific version
+    # version = "x.x.x"
 
     disk_size           = var.disk_size
     instance_types      = var.instance_types
