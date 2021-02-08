@@ -5,6 +5,7 @@
 |------|---------|
 | terraform | >= 0.13 |
 | aws | >= 3.18 |
+| kubernetes | >= 2.0 |
 | local | >= 1.2 |
 | random | >= 2.2 |
 | spotinst | >= 1.30 |
