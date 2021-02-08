@@ -14,6 +14,10 @@ terraform {
       source  = "hashicorp/aws"
       version = ">= 3.18"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 2.0"
+    }
     spotinst = {
       source  = "spotinst/spotinst"
       version = ">= 1.30"
