@@ -44,6 +44,14 @@ resource "spotinst_ocean_aws" "this" {
     autoscale_is_auto_config = true
   }
 
+  update_policy {
+    should_roll = var.update_policy_should_roll
+
+    roll_config {
+      batch_size_percentage = var.update_policy_batch_size_percentage
+    }
+  }
+
   lifecycle {
     ignore_changes = [desired_capacity]
   }
