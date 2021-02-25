@@ -199,3 +199,15 @@ variable "userdata_override_base64" {
     `before_cluster_joining_userdata`, `after_cluster_joining_userdata`, and `bootstrap_additional_options`.
     EOT
 }
+
+variable "update_policy_should_roll" {
+  type        = bool
+  default     = true
+  description = "If true, roll the cluster when its configuration is updated"
+}
+
+variable "update_policy_batch_size_percentage" {
+  type        = number
+  default     = 25
+  description = "When rolling the cluster due to an update, the percentage of the instances to deploy in each batch."
+}

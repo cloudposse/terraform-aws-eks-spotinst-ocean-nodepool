@@ -17,6 +17,25 @@
 | aws | >= 3.18 |
 | spotinst | >= 1.30 |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| this | cloudposse/label/null | 0.24.1 |
+| worker_label | cloudposse/label/null | 0.24.1 |
+
+## Resources
+
+| Name |
+|------|
+| [aws_ami](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami) |
+| [aws_iam_instance_profile](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_iam_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) |
+| [aws_iam_role_policy_attachment](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) |
+| [aws_partition](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) |
+| [spotinst_ocean_aws](https://registry.terraform.io/providers/spotinst/spotinst/latest/docs/resources/ocean_aws) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -61,6 +80,8 @@
 | stage | Stage, e.g. 'prod', 'staging', 'dev', OR 'source', 'build', 'test', 'deploy', 'release' | `string` | `null` | no |
 | subnet\_ids | A list of subnet IDs to launch resources in | `list(string)` | n/a | yes |
 | tags | Additional tags (e.g. `map('BusinessUnit','XYZ')` | `map(string)` | `{}` | no |
+| update\_policy\_batch\_size\_percentage | When rolling the cluster due to an update, the percentage of the instances to deploy in each batch. | `number` | `25` | no |
+| update\_policy\_should\_roll | If true, roll the cluster when its configuration is updated | `bool` | `true` | no |
 | userdata\_override\_base64 | Many features of this module rely on the `bootstrap.sh` provided with Amazon Linux, and this module<br>may generate "user data" that expects to find that script. If you want to use an AMI that is not<br>compatible with the Amazon Linux `bootstrap.sh` initialization, then use `userdata_override_base64` to provide<br>your own (Base64 encoded) user data. Use "" to prevent any user data from being set.<br><br>Setting `userdata_override_base64` disables `kubernetes_taints`, `kubelet_additional_options`,<br>`before_cluster_joining_userdata`, `after_cluster_joining_userdata`, and `bootstrap_additional_options`. | `string` | `null` | no |
 
 ## Outputs
@@ -69,5 +90,4 @@
 |------|-------------|
 | ocean\_controller\_id | The ID of the Ocean controller |
 | worker\_role\_arn | The ARN of the role for worker instances, if created by this module (`var.instance_profile == null`) |
-
 <!-- markdownlint-restore -->
