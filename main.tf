@@ -24,6 +24,7 @@ resource "spotinst_ocean_aws" "this" {
   desired_capacity            = var.desired_capacity
   subnet_ids                  = local.subnet_ids
   image_id                    = local.ami_id
+  whitelist                   = var.instance_types
   root_volume_size            = var.disk_size
   security_groups             = local.security_group_ids
   key_name                    = var.ec2_ssh_key
