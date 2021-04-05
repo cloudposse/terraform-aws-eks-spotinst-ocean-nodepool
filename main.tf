@@ -1,4 +1,3 @@
-
 locals {
   enabled            = module.this.enabled
   cluster_name       = var.eks_cluster_id
