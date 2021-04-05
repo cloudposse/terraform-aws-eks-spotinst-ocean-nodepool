@@ -5,7 +5,7 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.18 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.0 |
+| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 1.0 |
 | <a name="requirement_local"></a> [local](#requirement\_local) | >= 1.2 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.2 |
 | <a name="requirement_spotinst"></a> [spotinst](#requirement\_spotinst) | >= 1.30 |

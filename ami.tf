@@ -1,4 +1,3 @@
-
 locals {
   need_ami_id = var.ami_image_id == null
 

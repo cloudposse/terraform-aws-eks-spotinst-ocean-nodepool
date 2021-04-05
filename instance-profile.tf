@@ -36,6 +36,7 @@ resource "aws_iam_instance_profile" "worker" {
   name  = module.worker_label.id
   role  = join("", aws_iam_role.worker.*.name)
 }
+
 resource "aws_iam_role" "worker" {
   count              = local.instance_profile_enabled ? 1 : 0
   name               = module.worker_label.id

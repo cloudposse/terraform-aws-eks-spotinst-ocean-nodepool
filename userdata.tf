@@ -18,9 +18,11 @@
 locals {
   kubelet_label_settings = [for k, v in var.kubernetes_labels : format("%v=%v", k, v)]
   kubelet_taint_settings = [for k, v in var.kubernetes_taints : format("%v=%v", k, v)]
+
   kubelet_label_args = (length(local.kubelet_label_settings) == 0 ? "" :
     "--node-labels=${join(",", local.kubelet_label_settings)}"
   )
+
   kubelet_taint_args = (length(local.kubelet_taint_settings) == 0 ? "" :
     "--register-with-taints=${join(",", local.kubelet_taint_settings)}"
   )

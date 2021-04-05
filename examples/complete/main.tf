@@ -1,6 +1,3 @@
-
-
-
 module "eks_cluster_label" {
   source  = "cloudposse/label/null"
   version = "0.24.1"
@@ -23,13 +20,11 @@ locals {
   private_subnets_additional_tags = {
     "kubernetes.io/role/internal-elb" : 1
   }
-
 }
-
 
 module "vpc" {
   source  = "cloudposse/vpc/aws"
-  version = "0.20.4"
+  version = "0.21.1"
 
   cidr_block = "172.16.0.0/16"
   tags       = local.vpc_tags
@@ -37,11 +32,9 @@ module "vpc" {
   context = module.this.context
 }
 
-
-
 module "subnets" {
   source  = "cloudposse/dynamic-subnets/aws"
-  version = "0.37.6"
+  version = "0.38.0"
 
   tags = local.vpc_tags
 
@@ -57,12 +50,9 @@ module "subnets" {
   context = module.this.context
 }
 
-
-
-
 module "eks_cluster" {
   source  = "cloudposse/eks-cluster/aws"
-  version = "0.34.0"
+  version = "0.38.0"
 
   region                = var.region
   vpc_id                = module.vpc.vpc_id
