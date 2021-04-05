@@ -34,7 +34,7 @@ module "vpc" {
 
 module "subnets" {
   source  = "cloudposse/dynamic-subnets/aws"
-  version = "0.37.6"
+  version = "0.38.0"
 
   tags = local.vpc_tags
 
