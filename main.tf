@@ -52,6 +52,11 @@ resource "spotinst_ocean_aws" "this" {
     }
   }
 
+  metadata_options {
+    http_tokens                 = var.metadata_http_tokens_required ? "required" : "optional"
+    http_put_response_hop_limit = var.metadata_http_put_response_hop_limit
+  }
+
   lifecycle {
     ignore_changes = [desired_capacity]
   }

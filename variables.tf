@@ -20,6 +20,18 @@ variable "instance_profile" {
   default     = null
 }
 
+variable "metadata_http_tokens_required" {
+  type        = bool
+  default     = true
+  description = "Whether or not the metadata service requires session tokens, also referred to as Instance Metadata Service Version 2."
+}
+
+variable "metadata_http_put_response_hop_limit" {
+  type        = number
+  default     = 2
+  description = "The desired HTTP PUT response hop limit (between 1 and 64) for instance metadata requests."
+}
+
 variable "min_size" {
   type        = number
   description = "The lower limit of worker nodes the Ocean cluster can scale down to"
