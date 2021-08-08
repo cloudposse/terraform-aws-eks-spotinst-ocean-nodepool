@@ -87,7 +87,7 @@ variable "ec2_ssh_key" {
 
 variable "fallback_to_ondemand" {
   type        = bool
-  description = "If not Spot instance markets are available, enable Ocean to launch On-Demand instances instead."
+  description = "If no Spot instance markets are available, enable Ocean to launch On-Demand instances instead."
   default     = true
 }
 
