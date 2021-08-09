@@ -85,6 +85,12 @@ variable "ec2_ssh_key" {
   default     = null
 }
 
+variable "fallback_to_ondemand" {
+  type        = bool
+  description = "If no Spot instance markets are available, enable Ocean to launch On-Demand instances instead."
+  default     = true
+}
+
 variable "subnet_ids" {
   description = "A list of subnet IDs to launch resources in"
   type        = list(string)

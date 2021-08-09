@@ -30,6 +30,7 @@ resource "spotinst_ocean_aws" "this" {
   iam_instance_profile        = var.instance_profile == null ? join("", aws_iam_instance_profile.worker.*.name) : var.instance_profile
   associate_public_ip_address = var.associate_public_ip_address
   user_data                   = local.userdata
+  fallback_to_ondemand        = var.fallback_to_ondemand
 
   dynamic "tags" {
     for_each = merge(local.default_tags, module.this.tags)
