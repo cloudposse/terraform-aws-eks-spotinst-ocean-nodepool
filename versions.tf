@@ -20,7 +20,7 @@ terraform {
     }
     spotinst = {
       source  = "spotinst/spotinst"
-      version = ">= 1.30"
+      version = ">= 1.56"
     }
   }
 }
