@@ -1,5 +1,5 @@
 locals {
-  need_ami_id = var.ami_image_id == null
+  need_ami_id = local.enabled && var.ami_image_id == null
 
   // "amazon-eks-gpu-node-",
   arch_label_map = {
@@ -34,7 +34,7 @@ locals {
 }
 
 data "aws_ami" "selected" {
-  count = local.enabled && local.need_ami_id ? 1 : 0
+  count = local.need_ami_id ? 1 : 0
 
   most_recent = true
   name_regex  = local.ami_regex

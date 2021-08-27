@@ -154,14 +154,14 @@ Available targets:
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 1.0 |
 | <a name="requirement_local"></a> [local](#requirement\_local) | >= 1.2 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | >= 2.2 |
-| <a name="requirement_spotinst"></a> [spotinst](#requirement\_spotinst) | >= 1.30 |
+| <a name="requirement_spotinst"></a> [spotinst](#requirement\_spotinst) | >= 1.56 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.18 |
-| <a name="provider_spotinst"></a> [spotinst](#provider\_spotinst) | >= 1.30 |
+| <a name="provider_spotinst"></a> [spotinst](#provider\_spotinst) | >= 1.56 |
 
 ## Modules
 
