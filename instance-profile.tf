@@ -23,7 +23,7 @@ data "aws_iam_policy_document" "assume_role" {
 
 module "worker_label" {
   source  = "cloudposse/label/null"
-  version = "0.24.1"
+  version = "0.25.0"
 
   enabled    = local.instance_profile_enabled
   attributes = ["worker"]
