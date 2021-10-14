@@ -244,7 +244,12 @@ Available targets:
 | Name | Description |
 |------|-------------|
 | <a name="output_ocean_controller_id"></a> [ocean\_controller\_id](#output\_ocean\_controller\_id) | The ID of the Ocean controller |
+| <a name="output_ocean_id"></a> [ocean\_id](#output\_ocean\_id) | The ID of the Ocean (o-123b567c), if created by this module (`local.enabled`) |
+| <a name="output_worker_ami"></a> [worker\_ami](#output\_worker\_ami) | The AMI ID that the worker instance uses, if determined by this module (`var.ami_image_id == null`) |
+| <a name="output_worker_instance_profile_arn"></a> [worker\_instance\_profile\_arn](#output\_worker\_instance\_profile\_arn) | The ARN of the profile for worker instances, if created by this module (`var.instance_profile == null`) |
+| <a name="output_worker_instance_profile_name"></a> [worker\_instance\_profile\_name](#output\_worker\_instance\_profile\_name) | The name of the profile for worker instances, if created by this module (`var.instance_profile == null`) |
 | <a name="output_worker_role_arn"></a> [worker\_role\_arn](#output\_worker\_role\_arn) | The ARN of the role for worker instances, if created by this module (`var.instance_profile == null`) |
+| <a name="output_worker_role_name"></a> [worker\_role\_name](#output\_worker\_role\_name) | The name of the role for worker instances, if created by this module (`var.instance_profile == null`) |
 <!-- markdownlint-restore -->
 
 
