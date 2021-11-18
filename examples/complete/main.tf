@@ -60,7 +60,7 @@ module "eks_cluster" {
   kubernetes_version    = var.kubernetes_version
   oidc_provider_enabled = true
   workers_role_arns     = [var.spotinst_workers_role_arn]
-  
+
   kube_exec_auth_enabled = true
 
   context = module.this.context
