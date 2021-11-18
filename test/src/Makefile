@@ -15,9 +15,8 @@ init:
 .PHONY : test
 ## Run tests
 test: init
-	@echo Spotinst Ocean Test not implemented >&2; exit 1
-		#	go mod download
-		#	go test -v -timeout 60m -run TestExamplesComplete
+	go mod download
+	go test -v -timeout 60m -run TestExamplesComplete
 
 ## Run tests in docker container
 docker/test:
