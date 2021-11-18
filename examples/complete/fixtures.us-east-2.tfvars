@@ -6,7 +6,7 @@ environment = "ue2"
 
 stage = "test"
 
-name = "spotinst"
+name = "example"
 
 availability_zones = ["us-east-2a", "us-east-2b", "us-east-2c"]
 

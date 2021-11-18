@@ -1,8 +1,8 @@
 module "eks_cluster_label" {
   source  = "cloudposse/label/null"
-  version = "0.24.1"
+  version = "0.25.0"
 
-  attributes = compact(concat(module.this.attributes, ["cluster"]))
+  attributes = ["cluster"]
 
   context = module.this.context
 }
@@ -24,7 +24,7 @@ locals {
 
 module "vpc" {
   source  = "cloudposse/vpc/aws"
-  version = "0.21.1"
+  version = "0.28.1"
 
   cidr_block = "172.16.0.0/16"
   tags       = local.vpc_tags
@@ -34,7 +34,7 @@ module "vpc" {
 
 module "subnets" {
   source  = "cloudposse/dynamic-subnets/aws"
-  version = "0.38.0"
+  version = "0.39.8"
 
   tags = local.vpc_tags
 
@@ -52,7 +52,7 @@ module "subnets" {
 
 module "eks_cluster" {
   source  = "cloudposse/eks-cluster/aws"
-  version = "0.38.0"
+  version = "0.43.4"
 
   region                = var.region
   vpc_id                = module.vpc.vpc_id
@@ -60,12 +60,16 @@ module "eks_cluster" {
   kubernetes_version    = var.kubernetes_version
   oidc_provider_enabled = true
   workers_role_arns     = [var.spotinst_workers_role_arn]
+  
+  kube_exec_auth_enabled = true
 
   context = module.this.context
 }
 
 module "spotinst_oceans" {
   source = "../.."
+
+  depends_on = [module.eks_cluster.kubernetes_config_map_id]
 
   attributes       = ["spotinst"]
   disk_size        = 20
