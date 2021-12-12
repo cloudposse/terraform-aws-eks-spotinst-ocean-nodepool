@@ -80,9 +80,9 @@ variable "instance_types" {
 }
 
 variable "spot_percentage" {
-  type = number
+  type        = number
   description = "The percentage of Spot instances that would spin up from the desired_capacity number."
-  default = 100
+  default     = 100
 }
 
 variable "ec2_ssh_key" {
