@@ -31,6 +31,7 @@ resource "spotinst_ocean_aws" "this" {
   associate_public_ip_address = var.associate_public_ip_address
   user_data                   = local.userdata
   fallback_to_ondemand        = var.fallback_to_ondemand
+  spot_percentage             = var.spot_percentage
 
   dynamic "tags" {
     for_each = merge(local.default_tags, module.this.tags)
