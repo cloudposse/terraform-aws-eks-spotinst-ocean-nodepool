@@ -79,6 +79,12 @@ variable "instance_types" {
     EOT
 }
 
+variable "spot_percentage" {
+  type        = number
+  description = "The percentage of Spot instances that would spin up from the desired_capacity number."
+  default     = 100
+}
+
 variable "ec2_ssh_key" {
   type        = string
   description = "SSH key pair name to use to access the worker nodes launced by Ocean"

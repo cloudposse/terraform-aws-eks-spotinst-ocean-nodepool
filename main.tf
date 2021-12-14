@@ -21,6 +21,7 @@ resource "spotinst_ocean_aws" "this" {
   max_size                    = var.max_size
   min_size                    = var.min_size
   desired_capacity            = var.desired_capacity
+  spot_percentage             = var.spot_percentage
   subnet_ids                  = local.subnet_ids
   image_id                    = local.ami_id
   whitelist                   = var.instance_types
