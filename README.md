@@ -237,6 +237,7 @@ Available targets:
 | <a name="input_tenant"></a> [tenant](#input\_tenant) | ID element \_(Rarely used, not included by default)\_. A customer identifier, indicating who this instance of a resource is for | `string` | `null` | no |
 | <a name="input_update_policy_batch_size_percentage"></a> [update\_policy\_batch\_size\_percentage](#input\_update\_policy\_batch\_size\_percentage) | When rolling the cluster due to an update, the percentage of the instances to deploy in each batch. | `number` | `25` | no |
 | <a name="input_update_policy_should_roll"></a> [update\_policy\_should\_roll](#input\_update\_policy\_should\_roll) | If true, roll the cluster when its configuration is updated | `bool` | `true` | no |
+| <a name="input_use_as_template_only"></a> [use\_as\_template\_only](#input\_use\_as\_template\_only) | launch specification defined on the Ocean object will function only as a template for virtual node groups. When set to true, on Ocean resource creation please make sure your custom VNG has an initial\_nodes parameter to create nodes for your VNG. | `bool` | `false` | no |
 | <a name="input_userdata_override_base64"></a> [userdata\_override\_base64](#input\_userdata\_override\_base64) | Many features of this module rely on the `bootstrap.sh` provided with Amazon Linux, and this module<br>may generate "user data" that expects to find that script. If you want to use an AMI that is not<br>compatible with the Amazon Linux `bootstrap.sh` initialization, then use `userdata_override_base64` to provide<br>your own (Base64 encoded) user data. Use "" to prevent any user data from being set.<br><br>Setting `userdata_override_base64` disables `kubernetes_taints`, `kubelet_additional_options`,<br>`before_cluster_joining_userdata`, `after_cluster_joining_userdata`, and `bootstrap_additional_options`. | `string` | `null` | no |
 
 ## Outputs
@@ -421,7 +422,7 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
 
 [![README Footer][readme_footer_img]][readme_footer_link]
 [![Beacon][beacon]][website]
-
+<!-- markdownlint-disable -->
   [logo]: https://cloudposse.com/logo-300x69.svg
   [docs]: https://cpco.io/docs?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-eks-spotinst-ocean-nodepool&utm_content=docs
   [website]: https://cpco.io/homepage?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-eks-spotinst-ocean-nodepool&utm_content=website
@@ -452,3 +453,4 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
   [share_googleplus]: https://plus.google.com/share?url=https://github.com/cloudposse/terraform-aws-eks-spotinst-ocean-nodepool
   [share_email]: mailto:?subject=terraform-aws-eks-spotinst-ocean-nodepool&body=https://github.com/cloudposse/terraform-aws-eks-spotinst-ocean-nodepool
   [beacon]: https://ga-beacon.cloudposse.com/UA-76589703-4/cloudposse/terraform-aws-eks-spotinst-ocean-nodepool?pixel&cs=github&cm=readme&an=terraform-aws-eks-spotinst-ocean-nodepool
+<!-- markdownlint-restore -->
