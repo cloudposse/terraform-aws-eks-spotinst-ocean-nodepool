@@ -29,6 +29,7 @@ resource "spotinst_ocean_aws" "this" {
   key_name                    = var.ec2_ssh_key
   iam_instance_profile        = var.instance_profile == null ? join("", aws_iam_instance_profile.worker.*.name) : var.instance_profile
   associate_public_ip_address = var.associate_public_ip_address
+  use_as_template_only        = var.use_as_template_only
   user_data                   = local.userdata
   fallback_to_ondemand        = var.fallback_to_ondemand
 

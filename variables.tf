@@ -203,6 +203,12 @@ variable "bootstrap_additional_options" {
   description = "Additional options to bootstrap.sh. DO NOT include `--kubelet-additional-args`, use `kubelet_additional_args` var instead."
 }
 
+variable "use_as_template_only" {
+  type        = bool
+  default     = false
+  description = "launch specification defined on the Ocean object will function only as a template for virtual node groups. When set to true, on Ocean resource creation please make sure your custom VNG has an initial_nodes parameter to create nodes for your VNG."
+}
+
 variable "userdata_override_base64" {
   type        = string
   default     = null
