@@ -11,6 +11,7 @@ locals {
   }
 }
 
+  
 resource "spotinst_ocean_aws" "this" {
   count      = local.enabled ? 1 : 0
   depends_on = [var.module_depends_on]
