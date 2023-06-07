@@ -23,31 +23,22 @@ locals {
 }
 
 module "vpc" {
-  source  = "cloudposse/vpc/aws"
-  version = "0.28.1"
-
-  cidr_block = "172.16.0.0/16"
-  tags       = local.vpc_tags
-
-  context = module.this.context
+  source                  = "cloudposse/vpc/aws"
+  version                 = "2.1.0"
+  ipv4_primary_cidr_block = var.vpc_cidr_block
+  context                 = module.this.context
 }
 
 module "subnets" {
-  source  = "cloudposse/dynamic-subnets/aws"
-  version = "0.39.8"
-
-  tags = local.vpc_tags
-
-  availability_zones              = var.availability_zones
-  cidr_block                      = module.vpc.vpc_cidr_block
-  igw_id                          = module.vpc.igw_id
-  nat_gateway_enabled             = false
-  nat_instance_enabled            = true
-  public_subnets_additional_tags  = local.public_subnets_additional_tags
-  private_subnets_additional_tags = local.private_subnets_additional_tags
-  vpc_id                          = module.vpc.vpc_id
-
-  context = module.this.context
+  source               = "cloudposse/dynamic-subnets/aws"
+  version              = "2.3.0"
+  availability_zones   = var.availability_zones
+  vpc_id               = module.vpc.vpc_id
+  igw_id               = [module.vpc.igw_id]
+  ipv4_cidr_block      = [module.vpc.vpc_cidr_block]
+  nat_gateway_enabled  = false
+  nat_instance_enabled = false
+  context              = module.this.context
 }
 
 module "eks_cluster" {
