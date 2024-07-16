@@ -5,3 +5,4 @@ repository:
   description: A terraform module to create an EKS node pool with Spot Ocean by Spot.io
   homepage: https://cloudposse.com/accelerate/
   topics: ""
+
